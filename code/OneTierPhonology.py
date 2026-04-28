@@ -153,8 +153,8 @@ class Context(list):
         variables = tuple(self.vars_used())
         if len(variables) > 0:
             first_var = variables[0]
-            return (self.value_variable(first_var, True).match(segm)
-                or self.value_variable(first_var, False).match(segm))            
+            return (self.value_variable(first_var, True).match(string)
+                or self.value_variable(first_var, False).match(string))            
         _asterisk_depth = 5
         if '(' in self:
             start, depth = self.index('(') + 1, 1
