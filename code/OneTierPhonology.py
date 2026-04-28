@@ -332,6 +332,11 @@ class Rule:
                         ans = ans[:curr] + ans[currcurr] + ans[curr+1:currcurr] + ans[curr] + ans[currcurr+1:]
                         break
             else:
+                if len(self.target) > 0:
+                    while not self.target.match(ans[curr]): # e.g. for pluses before targets
+                        curr += 1
+                        if curr == len(ans):
+                            break
                 result_insert = [] if len(self.result) == 0 else [ans[curr].correct_to(self.result)]
                 ans = ans[:curr] + result_insert + ans[curr if (len(self.target) == 0) else curr+1:]
         return ans
