@@ -308,12 +308,13 @@ class Rule:
         if len(variables) > 0:
             value_var_plus = lambda x: x.value_variable(variables[0], True)
             rule_plus = Rule(*map(value_var_plus, (self.target, self.result, self.left, self.right)))
-            value_var_minus = lambda x: x.value_variable(variables[0], False)
-            rule_minus = Rule(*map(value_var_minus, (self.target, self.result, self.left, self.right)))
-            rule_plus.met, rule_minus.met = self.met, self.met
-            apply_plus = rule_plus.applyonce(segmstr)
+            rule_plus.met = self.met            
+            apply_plus = rule_plus.applyonce(segmstr)            
             if apply_plus != segmstr:
                 return apply_plus
+            value_var_minus = lambda x: x.value_variable(variables[0], False)
+            rule_minus = Rule(*map(value_var_minus, (self.target, self.result, self.left, self.right)))
+            rule_minus.met = self.met
             return rule_minus.applyonce(segmstr)
         ans = segmstr[:]
         if self.targetstring().match(ans):
