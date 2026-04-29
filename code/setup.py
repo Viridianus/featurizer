@@ -6,7 +6,7 @@ setup(
     author="Dmitrii Zelenskii",
     author_email="dz-zd@mail.ru",
     description="A slight modification of Connor Mayer and Robert Daland's code that learns features from segment classes.",
-    long_description=open("README.md").read(),
+    long_description=open("../README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/Viridianus/Featurizer",
     packages=find_packages(),
