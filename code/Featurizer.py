@@ -52,7 +52,7 @@ class Featurizer():
             raise Exception("Invalid featural specification '{}'".format(specification))
 
         self.input_classes = input_classes
-        self.alphabet = alphabet
+        self.alphabet = set(alphabet)
         self.specification = specification
         self.verbose = verbose
         self.rootname = rootname
