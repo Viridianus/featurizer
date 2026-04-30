@@ -338,7 +338,9 @@ class Rule:
                         curr += 1
                         if curr == len(ans):
                             break
-                result_insert = [] if len(self.result) == 0 else [ans[curr].correct_to(self.result)]
+                    result_insert = [] if len(self.result) == 0 else [ans[curr].correct_to(self.result)]
+                else:
+                    result_insert = [] if len(self.result) == 0 else [Segment('').correct_to(self.result)]
                 ans = ans[:curr] + result_insert + ans[curr if (len(self.target) == 0) else curr+1:]
         return ans
     def apply(self, segmstr: list):
