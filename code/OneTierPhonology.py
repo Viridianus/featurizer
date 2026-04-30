@@ -72,7 +72,8 @@ class SegmentDescription(dict):
             super().__init__()
         else:
             text = str(text).replace('syll','syllabic').replace('syllabicabic','syllabic').replace('[','').replace(']','').strip()
-            text = [(x[2:], '-'+x[1]) if (len(x) > 2) and (x[0] in Segment._minus) and (x[1].lower() in SegmentDescription._greek)
+            text = dict() if len(text) == 0 else [(x[2:], '-'+x[1])
+                if (len(x) > 2) and (x[0] in Segment._minus) and (x[1].lower() in SegmentDescription._greek)
                 else (x[1:], '-' if x[0] in Segment._minus else x[0]) for x in [y.strip() for y in text.split(',')]]
             super().__init__(text)
     def __str__(self):
