@@ -257,6 +257,7 @@ class Rule:
     mir: bool
     rep: bool
     _rep_marker = ' (repeating)'
+    _rightward_arrow = '→'
     def __init__(self, target, result, left, right, metathesis = False, mirror = False, repeating = False):
         self.target, self.result = SegmentDescription(target), SegmentDescription(result)
         self.left, self.right = Context(left), Context(right)
@@ -278,7 +279,7 @@ class Rule:
     def __repr__(self):
         return str(self)
     def parse(s: str):
-        target, rest = map(str.strip, str(s).split('→'))
+        target, rest = map(str.strip, str(s).split(Rule._rightward_arrow))
         rep = rest[-len(Rule._rep_marker):] == Rule._rep_marker
         if rep:
             rest = rest[:-len(Rule._rep_marker)]
@@ -443,4 +444,3 @@ class Transcriber(MutableMapping):
         if self is None:
             return Rule.parse(str(s))
         return Rule.parse(' '.join([str(x) for x in tr.text_to_segment(str(s))]))
-
